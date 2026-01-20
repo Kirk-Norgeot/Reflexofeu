@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code - ReflexOFeu</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .logo span {
+            color: #f97316;
+        }
+        #qrcode {
+            display: inline-block;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        .url {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: monospace;
+            color: #374151;
+        }
+        .instructions {
+            text-align: left;
+            margin-top: 30px;
+            padding: 20px;
+            background: #fef3c7;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #92400e;
+        }
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 8px 0;
+            color: #78350f;
+        }
+        .warning {
+            background: #fee2e2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            Reflex<span>O</span>Feu
+        </div>
+        <h1>Scanner ce QR Code</h1>
+        <p>Pour accéder à l'application sur votre tablette</p>
+
+        <div id="qrcode"></div>
+
+        <div class="url">
+            <strong>URL:</strong><br>
+            <span id="appUrl"></span>
+        </div>
+
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Assurez-vous que votre tablette est connectée au <strong>même réseau WiFi</strong> que cet ordinateur</li>
+                <li>Ouvrez l'appareil photo ou une application de scan QR code sur votre tablette</li>
+                <li>Scannez le QR code ci-dessus</li>
+                <li>L'application ReflexOFeu s'ouvrira dans votre navigateur</li>
+            </ol>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Important:</strong> Le serveur de développement doit être en cours d'exécution pour que l'application fonctionne.
+        </div>
+    </div>
+
+    <script>
+        // Déterminer l'URL de l'application
+        const localIP = '169.254.8.1';
+        const port = '5173'; // Port par défaut de Vite
+        const appUrl = `http://${localIP}:${port}`;
+
+        // Afficher l'URL
+        document.getElementById('appUrl').textContent = appUrl;
+
+        // Générer le QR code
+        new QRCode(document.getElementById('qrcode'), {
+            text: appUrl,
+            width: 256,
+            height: 256,
+            colorDark: '#1f2937',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>

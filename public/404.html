@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflexofeu</title>
+  <script>
+    // Redirect to index.html with the current path as a query parameter
+    // This allows React Router to handle the routing on the client side
+    const path = window.location.pathname;
+    window.location.replace('/index.html?redirect=' + encodeURIComponent(path));
+  </script>
+</head>
+<body>
+  <div style="font-family: system-ui, sans-serif; text-align: center; padding: 50px;">
+    <h1>Chargement...</h1>
+    <p>Si vous n'êtes pas redirigé automatiquement, <a href="/">cliquez ici</a>.</p>
+  </div>
+</body>
+</html>
